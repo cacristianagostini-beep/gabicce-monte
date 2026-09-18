@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinque a Gabicce</title>
+<meta name="description" content="Gabicce Monte — 5 residenze esclusive tra il mare Adriatico e il Parco Naturale del San Bartolo.">
+<style>
+:root{
+  --ink:#1c3a52;        /* blu mare — testo principale */
+  --ink-soft:#3c5a70;
+  --paper:#fbfaf6;      /* bianco caldo — fondo principale, come nel moodboard */
+  --paper-2:#f2e9d8;    /* panna — riservato a riquadri e sezioni d'accento */
+  --card:#ffffff;
+  --azzurro:#8fb2c9;
+  --sabbia:#cdb896;
+  --verde:#6b7a56;
+  --tortora:#a89985;
+  --navy-deep:#12283b;  /* fascia scura finale, come nel moodboard */
+  --line: rgba(28,58,82,0.16);
+  --maxw: 1180px;
+}
+/* Direzione visiva unica e intenzionale (come nel moodboard): fondo chiaro
+   ovunque, blu navy riservato alla sola fascia finale — non si adatta al
+   tema di sistema del dispositivo. */
+
+*{box-sizing:border-box;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Sora','Segoe UI',sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,.disp{
+  font-family:'Cormorant Garamond','Iowan Old Style',Georgia,serif;
+  font-weight:500;
+  line-height:1.08;
+  text-wrap:balance;
+  color:var(--ink);
+}
+em, .script{
+  font-family:'Playfair Display','Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:500;
+}
+p{ line-height:1.7; }
+.eyebrow{
+  font-family:'Sora',sans-serif;
+  text-transform:uppercase;
+  letter-spacing:0.24em;
+  font-size:0.7rem;
+  font-weight:600;
+  color:var(--ink-soft);
+}
+.wrap{ max-width:var(--maxw); margin-inline:auto; padding-inline:clamp(20px,5vw,64px); }
+a{ color:inherit; }
+img{ max-width:100%; }
+
+/* ---------- soft daylight "photo" panels — stand-ins for client renders ---------- */
+.scape{ position:relative; overflow:hidden; isolation:isolate; background:var(--card); }
+.scape img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+.scape::after{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(ellipse 70% 50% at 20% 100%, rgba(255,255,255,0.14), transparent 60%);
+  mix-blend-mode:overlay; pointer-events:none;
+}
+.scape-note{
+  position:absolute; left:10px; bottom:10px; z-index:2;
+  font-family:'Sora',sans-serif; font-size:0.6rem; letter-spacing:0.06em; text-transform:uppercase;
+  color:#fff; background:rgba(18,40,59,0.55); padding:4px 9px; border-radius:2px; backdrop-filter:blur(2px);
+}
+.scape-terrace{ background:linear-gradient(155deg,#f3ead6 0%,#e3d3ae 38%,#a9c3cf 72%,#6f9fb3 100%); }
+.scape-sea{ background:linear-gradient(165deg,#dcecf1 0%,#b9d9e3 34%,#7fb0c4 66%,#4f88a2 100%); }
+.scape-terracotta{ background:linear-gradient(160deg,#f1e2c2 0%,#e0c79a 45%,#c79a6f 100%); }
+.scape-pine{ background:linear-gradient(160deg,#e8ecda 0%,#c3cfa8 38%,#8b9d6c 72%,#5c6f47 100%); }
+.scape-room{ background:linear-gradient(120deg,#fbf6ea 0%,#f0e6cf 55%,#e2d3b3 100%); }
+.scape-path{ background:linear-gradient(170deg,#eef1e4 0%,#c9d6b8 30%,#87a891 60%,#4f7c86 100%); }
+.scape-sunset{ background:linear-gradient(180deg,#f7dfae 0%,#eebb84 24%,#d99a76 46%,#a9718a 68%,#5f6f92 100%); }
+.scape-dusk{ background:linear-gradient(180deg,#dfe9ee 0%,#a9c4cf 30%,#6f92a3 60%,#3c5a72 100%); }
+
+.hairline{ height:1px; background:var(--line); border:0; }
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:'Sora',sans-serif; font-size:0.78rem; font-weight:600;
+  letter-spacing:0.09em; text-transform:uppercase;
+  padding:15px 30px;
+  border:1px solid currentColor;
+  border-radius:1px;
+  cursor:pointer; background:transparent;
+  transition:background 0.25s ease, color 0.25s ease;
+  white-space:nowrap;
+}
+.btn-navy{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+.btn-navy:hover{ opacity:0.86; }
+.btn-outline{ color:var(--ink); border-color:var(--ink); }
+.btn-outline:hover{ background:var(--ink); color:var(--paper); }
+.btn-cream{ color:#fbf6ec; border-color:rgba(251,246,236,0.75); }
+.btn-cream:hover{ background:rgba(251,246,236,0.14); }
+.btn-solid-cream{ background:#fbf6ec; color:var(--ink); border-color:#fbf6ec; }
+.btn-solid-cream:hover{ opacity:0.88; }
+
+/* ---------- nav ---------- */
+header.nav{
+  position:sticky; top:0; z-index:50;
+  padding-top:calc(16px + env(safe-area-inset-top,0px));
+  padding-bottom:16px;
+  background:rgba(247,242,231,0.86);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+header.nav .wrap{ display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.brand{ font-family:'Cormorant Garamond',serif; font-size:1.2rem; letter-spacing:0.03em; }
+.brand b{ font-weight:600; }
+nav.links{ display:flex; gap:28px; font-size:0.75rem; letter-spacing:0.07em; text-transform:uppercase; color:var(--ink-soft); }
+nav.links a{ text-decoration:none; }
+nav.links a:hover{ color:var(--ink); }
+@media (max-width:800px){ nav.links{ display:none; } }
+
+/* ---------- 01 hero — foto a piena larghezza, come nel riferimento ---------- */
+.hero{ position:relative; min-height:min(760px,100dvh); display:flex; align-items:flex-end; overflow:hidden; color:#fbf6ec; }
+.hero-bg{ position:absolute; inset:0; z-index:0; }
+.hero-bg img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.hero-bg::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(15,30,42,0.05) 0%, rgba(15,30,42,0.08) 45%, rgba(12,24,34,0.62) 100%);
+}
+.hero .wrap{ position:relative; z-index:1; padding-block-end:clamp(48px,8vh,84px); width:100%; }
+.hero-eyebrow{ color:#f1e6cc; }
+.hero h1{ font-size:clamp(2.5rem,6vw,4.6rem); margin:14px 0 24px; max-width:16ch; }
+.hero .lede{ font-size:clamp(1.02rem,1.4vw,1.25rem); max-width:38ch; color:#ece3d0; margin:0 0 34px; }
+.hero .ctas{ display:flex; flex-wrap:wrap; gap:14px; }
+
+/* ---------- generic section shell ---------- */
+section{ position:relative; }
+.pad{ padding-block:clamp(64px,10vw,120px); }
+.section-num{ font-family:'Sora',sans-serif; font-size:0.7rem; letter-spacing:0.22em; color:var(--tortora); margin-bottom:14px; text-transform:uppercase; }
+
+/* ---------- 02 seconda casa ---------- */
+.split{ display:grid; grid-template-columns:0.95fr 1.05fr; gap:clamp(30px,6vw,84px); align-items:center; }
+@media (max-width:860px){ .split{ grid-template-columns:1fr; } }
+.col-media .scape{ aspect-ratio:5/4; }
+.big-quote{ font-size:clamp(1.7rem,3vw,2.4rem); margin:0 0 22px; }
+.body-copy{ font-size:1.02rem; max-width:52ch; color:var(--ink-soft); }
+.body-copy + .body-copy{ margin-top:16px; }
+.tagline{ font-family:'Playfair Display',serif; font-style:italic; font-size:1.35rem; margin-top:28px; color:var(--ink); }
+
+/* ---------- 03 benessere ---------- */
+.benessere{ background:var(--paper-2); }
+.time-row{ display:flex; flex-wrap:wrap; gap:clamp(24px,4vw,56px); margin:32px 0 36px; }
+.time-item{ font-family:'Cormorant Garamond',serif; font-size:clamp(1.5rem,2.4vw,2.1rem); }
+.time-item span{ display:block; font-family:'Sora',sans-serif; font-size:0.66rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--tortora); margin-bottom:6px; }
+.pull{
+  font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(1.35rem,2.2vw,1.8rem);
+  border-left:2px solid var(--azzurro); padding-left:24px; margin-top:44px; max-width:44ch;
+}
+
+/* ---------- 04 location ---------- */
+.loc-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,5vw,60px); align-items:center; }
+@media (max-width:860px){ .loc-grid{ grid-template-columns:1fr; } }
+.loc-media{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.loc-media .scape:first-child{ aspect-ratio:3/4; grid-row:span 2; }
+.loc-media .scape:last-child{ aspect-ratio:3/2.1; }
+.loc-columns{ display:grid; grid-template-columns:1fr 1fr; gap:26px; margin:28px 0 34px; }
+@media (max-width:520px){ .loc-columns{ grid-template-columns:1fr; } }
+.loc-columns div{ border-top:1px solid var(--line); padding-top:14px; }
+.loc-columns b{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:1.2rem; display:block; margin-bottom:6px; }
+
+/* ---------- 05 lifestyle gallery — collage a griglia definita, quasi senza testo ---------- */
+.gallery-head{ text-align:center; margin-bottom:6px; }
+.gallery-head h2{ font-size:clamp(2rem,4vw,3rem); }
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-template-rows:repeat(3, minmax(120px,21vw));
+  grid-template-areas:
+    "a a b c"
+    "a a d c"
+    "e e f f";
+  gap:8px; margin-top:44px;
+}
+.gallery figure{ margin:0; overflow:hidden; }
+.gallery figure:nth-child(1){ grid-area:a; }
+.gallery figure:nth-child(2){ grid-area:b; }
+.gallery figure:nth-child(3){ grid-area:c; }
+.gallery figure:nth-child(4){ grid-area:d; }
+.gallery figure:nth-child(5){ grid-area:e; }
+.gallery figure:nth-child(6){ grid-area:f; }
+.gallery .scape{ width:100%; height:100%; }
+.gallery .scape img{ transition:transform 0.6s ease; }
+.gallery figure:hover .scape img{ transform:scale(1.05); }
+.gallery .scape::before{
+  content:""; position:absolute; inset:0; z-index:1;
+  background:linear-gradient(180deg, transparent 55%, rgba(10,21,31,0.62) 100%);
+  pointer-events:none;
+}
+.gallery figcaption{
+  position:absolute; left:16px; right:16px; bottom:14px; z-index:2;
+  font-family:'Playfair Display',serif; font-style:italic;
+  color:#fbf6ec; font-size:1.02rem; line-height:1.3;
+  text-shadow:0 1px 6px rgba(0,0,0,0.25);
+}
+@media (max-width:760px){
+  .gallery{
+    grid-template-columns:repeat(2,1fr);
+    grid-template-rows:32vw 32vw 30vw 30vw 40vw 40vw;
+    grid-template-areas:
+      "a a"
+      "a a"
+      "b c"
+      "d c"
+      "e e"
+      "f f";
+  }
+}
+@media (max-width:520px){
+  .gallery{ grid-template-columns:1fr; grid-template-areas:"a" "b" "c" "d" "e" "f"; grid-template-rows:repeat(6, 62vw); }
+}
+
+/* ---------- 06 le ville ---------- */
+.ville-head{ text-align:center; max-width:720px; margin-inline:auto; }
+.ville-head .disp{ font-size:clamp(2.6rem,6vw,4.2rem); margin-bottom:10px; }
+.ville-render{ margin-top:52px; display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+@media (max-width:760px){ .ville-render{ grid-template-columns:repeat(2,1fr); } }
+.ville-render .scape{ aspect-ratio:1/1.15; }
+.features{
+  margin-top:52px; display:flex; flex-wrap:wrap; justify-content:center;
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+}
+.feature{ flex:1 1 150px; text-align:center; padding:26px 14px; border-left:1px solid var(--line); display:flex; flex-direction:column; align-items:center; gap:10px; }
+.feature:first-child{ border-left:none; }
+.feature svg{ width:24px; height:24px; stroke:var(--ink); }
+.feature span{ font-size:0.74rem; letter-spacing:0.04em; color:var(--ink-soft); }
+.ville-cta{ text-align:center; margin-top:46px; }
+
+/* ---------- 07 investimento ---------- */
+.investimento{ background:var(--paper-2); }
+.inv-top{ text-align:center; max-width:640px; margin:0 auto 20px; }
+.inv-top .disp{ font-size:clamp(2.2rem,5vw,3.4rem); }
+.inv-copy{ max-width:620px; margin:24px auto 0; text-align:center; }
+.inv-line{ text-align:center; margin-top:38px; font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(1.3rem,2.4vw,1.7rem); }
+.cycle{ margin-top:56px; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; font-family:'Sora',sans-serif; font-size:0.76rem; letter-spacing:0.08em; text-transform:uppercase; }
+.cycle .node{ padding:12px 18px; border:1px solid var(--line); border-radius:999px; background:var(--card); }
+.cycle .arrow{ padding-inline:12px; color:var(--tortora); }
+
+/* ---------- 08 servizio ---------- */
+.serv-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,6vw,80px); align-items:start; }
+@media (max-width:820px){ .serv-grid{ grid-template-columns:1fr; } }
+.serv-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; }
+.serv-list li{ padding:16px 0; border-top:1px solid var(--line); font-family:'Cormorant Garamond',serif; font-size:1.3rem; }
+.serv-list li:last-child{ border-bottom:1px solid var(--line); }
+.serv-note{ font-size:0.98rem; color:var(--ink-soft); max-width:42ch; margin-top:20px; }
+.serv-close{ font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(1.4rem,2.6vw,1.9rem); margin-top:32px; }
+
+/* ---------- 09 closing — foto del mare a piena larghezza, come nel moodboard ---------- */
+.closing{ position:relative; color:#f3ede0; overflow:hidden; }
+.closing-bg{ position:absolute; inset:0; z-index:0; }
+.closing-bg img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.closing-bg::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(10,21,31,0.55) 0%, rgba(10,21,31,0.72) 55%, rgba(10,21,31,0.88) 100%);
+}
+.closing .wrap{ position:relative; z-index:1; }
+.closing-inner{ max-width:640px; }
+.closing .disp{ color:#f7f2e6; font-size:clamp(2rem,4.4vw,3rem); max-width:15ch; }
+.closing .disp em{ color:var(--sabbia); }
+.closing .lede{ margin-top:18px; max-width:40ch; color:#d9d0bd; }
+.closing form{ margin-top:30px; display:flex; flex-direction:column; gap:12px; max-width:420px; }
+.field{ display:flex; flex-direction:column; gap:6px; text-align:left; }
+.field label{ font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:#c8bfa9; }
+.field input{
+  background:rgba(255,255,255,0.08); border:1px solid rgba(247,242,231,0.35); color:#f7f2e6;
+  padding:13px 14px; font-family:'Sora',sans-serif; font-size:0.95rem; border-radius:1px;
+}
+.field input::placeholder{ color:rgba(247,242,231,0.45); }
+.field input:focus{ outline:2px solid var(--sabbia); outline-offset:1px; }
+.closing .btn-navy{ margin-top:6px; background:#f7f2e6; color:var(--navy-deep); border-color:#f7f2e6; }
+.closing-script{
+  position:absolute; right:clamp(20px,5vw,64px); bottom:32px; z-index:1;
+  font-family:'Playfair Display',serif; font-style:italic; text-align:right;
+  font-size:1.05rem; color:#f3ede0; opacity:0.9; line-height:1.35;
+}
+.foot-note{ margin-top:18px; font-size:0.78rem; color:#c8bfa9; }
+
+footer{
+  padding:26px clamp(20px,5vw,64px);
+  padding-bottom:calc(26px + env(safe-area-inset-bottom,0px));
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  font-size:0.75rem; letter-spacing:0.03em; color:#a6a08f;
+  background:var(--navy-deep);
+}
+
+@media (prefers-reduced-motion:no-preference){ .reveal{ animation:fadeUp 0.8s ease both; } }
+@keyframes fadeUp{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:none; } }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital@1&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="brand"><b>Cinque</b> · Gabicce Monte</div>
+    <nav class="links">
+      <a href="#seconda-casa">La casa</a>
+      <a href="#location">Territorio</a>
+      <a href="#ville">Le ville</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+    <a href="#contatti" class="btn btn-outline" style="padding:10px 20px;">Prenota visita</a>
+  </div>
+</header>
+
+<!-- 01 — HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"><img src="images/hero-tramonto.webp" alt="Tramonto sul mare Adriatico, Gabicce Monte"></div>
+  <div class="wrap reveal">
+    <div class="eyebrow hero-eyebrow">Gabicce Monte</div>
+    <h1>La tua casa tra il mare<br>e il San Bartolo.</h1>
+    <p class="lede">Una collezione di sole cinque residenze pensate per chi cerca molto più di una seconda casa.</p>
+    <div class="ctas">
+      <a href="#ville" class="btn btn-cream">Scopri le residenze</a>
+      <a href="#contatti" class="btn btn-solid-cream">Prenota una visita privata</a>
+    </div>
+  </div>
+</section>
+
+<!-- 02 — SECONDA CASA -->
+<section class="pad" id="seconda-casa">
+  <div class="wrap">
+    <div class="split reveal">
+      <div class="col-media"><div class="scape scape-room"><img src="images/dining-room.jpg" alt="Interno soggiorno vista mare"></div></div>
+      <div class="col-text">
+        <div class="section-num">02 — Seconda casa</div>
+        <h2 class="big-quote">Non una casa per le vacanze.<br>Una casa nella tua vita.</h2>
+        <p class="body-copy">Un luogo in cui tornare ogni estate, ogni weekend, ogni volta che ne senti il bisogno.</p>
+        <p class="body-copy">La casa dove lasciare le proprie cose. Dove invitare gli amici. Dove vedere crescere i propri figli. Dove creare ricordi che, anno dopo anno, diventano parte della storia della famiglia.</p>
+        <p class="tagline">La tua seconda casa, con la sensazione di essere sempre a casa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 — BENESSERE -->
+<section class="pad benessere">
+  <div class="wrap reveal">
+    <div class="section-num">03 — Benessere</div>
+    <h2 style="font-size:clamp(2.1rem,4.4vw,3.4rem); max-width:16ch;">Un investimento che restituisce tempo.</h2>
+    <div class="time-row">
+      <div class="time-item"><span>Per te</span>Tempo</div>
+      <div class="time-item"><span>In famiglia</span>Tempo</div>
+      <div class="time-item"><span>Nella natura</span>Tempo</div>
+    </div>
+    <p class="body-copy">Possedere una casa a Gabicce Monte significa investire anche nella propria qualità della vita. Mare, natura, silenzio e privacy diventano qualcosa che puoi vivere quando vuoi.</p>
+    <p class="pull">Il vero lusso non è possedere di più.<br>È poter scegliere dove stare bene.</p>
+  </div>
+</section>
+
+<!-- 04 — LOCATION -->
+<section class="pad" id="location">
+  <div class="wrap">
+    <div class="loc-grid reveal">
+      <div>
+        <div class="section-num">04 — Location</div>
+        <h2 style="font-size:clamp(2.2rem,4.6vw,3.4rem);">Tra due mondi.</h2>
+        <div class="loc-columns">
+          <div><b>L'Adriatico</b><span class="body-copy" style="display:block;">Da una parte il mare aperto, con le sue luci e i suoi ritmi.</span></div>
+          <div><b>Il San Bartolo</b><span class="body-copy" style="display:block;">Dall'altra il verde del Parco Naturale, sentieri e silenzio.</span></div>
+        </div>
+        <p class="body-copy">Gabicce Monte occupa una posizione particolare della Riviera: abbastanza vicina al mare per viverlo ogni giorno, abbastanza distante dal lungomare per ritrovare tranquillità e natura.</p>
+        <div style="margin-top:30px;"><a href="#" class="btn btn-outline">Scopri il territorio</a></div>
+      </div>
+      <div class="loc-media">
+        <div class="scape scape-path"><img src="images/nature-path.jpg" alt="Sentiero panoramico San Bartolo"></div>
+        <div class="scape scape-sea"><img src="images/baia-vallugola.jpg" alt="Baia Vallugola vista dall'alto"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 — LIFESTYLE -->
+<section class="pad" id="lifestyle" style="background:var(--paper-2);">
+  <div class="wrap">
+    <div class="gallery-head reveal">
+      <div class="eyebrow" style="justify-content:center; display:flex;">05 — Lifestyle</div>
+      <h2>Ogni giorno può essere diverso.</h2>
+    </div>
+    <div class="gallery reveal">
+      <figure><div class="scape scape-sea"><img src="images/gabicce-mare.jpg" alt="Mattina al mare, spiaggia di Gabicce"><figcaption>Mattina al mare.</figcaption></div></figure>
+      <figure><div class="scape scape-terracotta"><img src="images/buon-cibo.jpg" alt="Pranzo a Vallugola"><figcaption>Pranzo a Vallugola.</figcaption></div></figure>
+      <figure><div class="scape scape-pine"><img src="images/nature-path.jpg" alt="Un pomeriggio sui sentieri del San Bartolo"><figcaption>Un pomeriggio sui sentieri<br>del San Bartolo.</figcaption></div></figure>
+      <figure><div class="scape scape-terrace"><img src="images/gradara.jpg" alt="Un giro a Gradara o Pesaro"><figcaption>Un giro a Gradara o Pesaro.</figcaption></div></figure>
+      <figure><div class="scape scape-room"><img src="images/wake-up-sea.jpg" alt="Una cena sulla Riviera"><figcaption>Una cena sulla Riviera.</figcaption></div></figure>
+      <figure><div class="scape scape-path"><img src="images/misano.jpg" alt="Di nuovo a casa, sopra il mare"><figcaption>E poi di nuovo a casa,<br>sopra il mare.</figcaption></div></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 06 — LE VILLE -->
+<section class="pad" id="ville">
+  <div class="wrap">
+    <div class="ville-head reveal">
+      <div class="section-num" style="text-align:center;">06 — Le residenze</div>
+      <div class="disp">Solo cinque.</div>
+      <p class="body-copy" style="margin-inline:auto; text-align:center;">Cinque residenze contemporanee progettate per dialogare con il paesaggio di Gabicce Monte.</p>
+    </div>
+    <div class="ville-render reveal">
+      <div class="scape scape-room"><img src="images/dining-room.jpg" alt="Residenza 1 — interno"></div>
+      <div class="scape scape-terrace"><img src="images/terrazza-tramonto.jpg" alt="Residenza 2 — terrazza"></div>
+      <div class="scape scape-pine"><img src="images/gradara.jpg" alt="Residenza 3 — contesto"></div>
+      <div class="scape scape-sea"><img src="images/baia-vallugola.jpg" alt="Residenza 4 — vista mare"></div>
+      <div class="scape scape-terracotta"><img src="images/wake-up-sea.jpg" alt="Residenza 5 — camera"></div>
+    </div>
+    <div class="features reveal">
+      <div class="feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M3 12l9-8 9 8M6 10v9h12v-9"/></svg><span>Classe A4</span></div>
+      <div class="feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M3 20h18M6 20V9l6-4 6 4v11M9 20v-6h6v6"/></svg><span>Spazi esterni</span></div>
+      <div class="feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 15l4-4 4 3 4-5 4 3"/></svg><span>Vista panoramica</span></div>
+      <div class="feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M12 3l7 4v5c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V7l7-4z"/></svg><span>Privacy</span></div>
+      <div class="feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="3" y="8" width="18" height="10" rx="1.5"/><circle cx="7.5" cy="18" r="1.5"/><circle cx="16.5" cy="18" r="1.5"/></svg><span>Parcheggio</span></div>
+      <div class="feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg><span>Tecnologia</span></div>
+    </div>
+    <div class="ville-cta reveal"><a href="#contatti" class="btn btn-navy">Scopri le residenze disponibili</a></div>
+  </div>
+</section>
+
+<!-- 07 — INVESTIMENTO -->
+<section class="pad investimento">
+  <div class="wrap">
+    <div class="inv-top reveal">
+      <div class="section-num" style="text-align:center;">07 — Investimento</div>
+      <div class="disp">La vivi oggi.<br>Rimane domani.</div>
+    </div>
+    <p class="inv-copy body-copy">Una casa che puoi vivere, condividere, eventualmente mettere a reddito quando non la utilizzi e conservare all'interno del patrimonio familiare.</p>
+    <p class="inv-line">Le case si possono costruire.<br>Le posizioni no.</p>
+    <p class="body-copy" style="margin:20px auto 0; text-align:center;">Il valore distintivo nasce dall'incontro tra territorio, limitata disponibilità, nuova costruzione e posizione.</p>
+    <div class="cycle reveal">
+      <span class="node">Vivi</span><span class="arrow">→</span>
+      <span class="node">Condividi</span><span class="arrow">→</span>
+      <span class="node">Valorizza</span><span class="arrow">→</span>
+      <span class="node">Tramanda</span><span class="arrow">→</span>
+      <span class="node">Vivi</span>
+    </div>
+  </div>
+</section>
+
+<!-- 08 — SERVIZIO -->
+<section class="pad">
+  <div class="wrap">
+    <div class="serv-grid reveal">
+      <div>
+        <div class="section-num">08 — Servizio</div>
+        <h2 style="font-size:clamp(2.1rem,4.4vw,3.2rem);">Tu pensa a viverla.</h2>
+        <p class="serv-note">L'acquirente può avere un unico interlocutore anche dopo l'acquisto.</p>
+        <p class="serv-close">Arrivi. Apri la porta.<br>Sei a casa.</p>
+      </div>
+      <ul class="serv-list">
+        <li>Personalizzazione degli interni</li>
+        <li>Arredamento</li>
+        <li>Manutenzione</li>
+        <li>Preparazione della casa</li>
+        <li>Gestione locazioni</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 09 — CHIUSURA -->
+<section class="pad closing" id="contatti">
+  <div class="closing-bg"><img src="images/baia-vallugola.jpg" alt="La costa di Gabicce Monte vista dal mare"></div>
+  <div class="wrap reveal">
+    <div class="closing-inner">
+      <div class="eyebrow" style="color:#c8bfa9;">Gabicce Monte — 5 residenze esclusive</div>
+      <h2 class="disp" style="margin-top:14px;">Forse non stai cercando una casa al mare.<br><em>Stai cercando il posto in cui vorrai tornare.</em></h2>
+      <form onsubmit="return false;">
+        <div class="field">
+          <label for="f-nome">Nome e cognome</label>
+          <input id="f-nome" name="nome" type="text" placeholder="Il tuo nome" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="f-tel">Telefono</label>
+          <input id="f-tel" name="telefono" type="tel" placeholder="+39" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" placeholder="nome@email.com" autocomplete="email">
+        </div>
+        <button type="submit" class="btn btn-navy">Prenota una visita privata</button>
+      </form>
+      <div class="foot-note">Ti richiameremo entro 24 ore per organizzare una visita privata alle residenze.</div>
+    </div>
+  </div>
+  <div class="closing-script">More than a stay.<br>A feeling.</div>
+</section>
+
+<footer>
+  <span>© Gabicce Monte — 5 Residenze</span>
+  <span>Riviera Adriatica · San Bartolo</span>
+</footer>
+</body>
+</html>
