@@ -21,3 +21,5 @@
 .tour-placeholder strong{font:400 30px/1.2 var(--serif)}
 @media(max-width:780px){.tour-section{padding:70px 0}.tour-section h2{font-size:34px}.tour-box{aspect-ratio:4/3}.tour-placeholder strong{font-size:22px}.brand-logo{height:50px}}
 .brand-logo[hidden],.brand b[hidden]{display:none}
+
+.time-sunset{margin:0;background:#eceee5;line-height:0}.time-sunset img{width:100%;height:auto;max-height:78vh;object-fit:cover;object-position:center 60%}@media(max-width:780px){.time-sunset img{max-height:none;aspect-ratio:4/3}}
