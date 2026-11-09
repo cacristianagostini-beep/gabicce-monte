@@ -1,7 +1,7 @@
 (function(){
 'use strict';
 const byId=id=>document.getElementById(id),explorer=byId('prestige-residenze'),form=byId('contactForm');
-const pageConfig=window.PRESTIGE_CONFIG||{whatsappNumber:'',contactEndpoint:''};
+const pageConfig=window.PRESTIGE_CONFIG||{whatsappNumber:'393275660751',contactEndpoint:''};
 const campaign={};
 const query=new URLSearchParams(location.search);
 for(const key of ['utm_source','utm_medium','utm_campaign','utm_content','utm_term']){const value=query.get(key);if(value)campaign[key]=value.slice(0,200)}

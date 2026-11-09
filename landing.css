@@ -32,3 +32,5 @@
 .location-section,.value-section,.quality-section{background:#eceee5;box-shadow:0 0 0 100vmax #eceee5;clip-path:inset(0 -100vmax)}
 .quality-section{grid-template-columns:1fr;gap:34px}.quality-section>div>p{max-width:560px}
 .portrait-photo img{object-position:68% center}
+.whatsapp-button .wa-icon{display:block;flex:none}.whatsapp-button>span:first-child{display:none}
+.whatsapp-button .wa-icon{margin-right:12px}
