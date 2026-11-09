@@ -31,3 +31,4 @@
 .time-section{background:var(--paper)}
 .location-section,.value-section,.quality-section{background:#eceee5;box-shadow:0 0 0 100vmax #eceee5;clip-path:inset(0 -100vmax)}
 .quality-section{grid-template-columns:1fr;gap:34px}.quality-section>div>p{max-width:560px}
+.portrait-photo img{object-position:68% center}
