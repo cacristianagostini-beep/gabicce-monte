@@ -24,3 +24,4 @@
 
 
 .time-image{height:clamp(430px,48vw,720px)}.time-image img{object-position:center 58%}@media(max-width:780px){.time-image{height:420px}}@media(max-width:550px){.time-image{height:380px}.time-image img{object-position:50% center}}
+@media(min-width:551px){.intro-split{grid-template-columns:1fr 1.2fr}.intro-split .editorial-copy{order:-1}}
