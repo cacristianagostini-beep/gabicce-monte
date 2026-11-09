@@ -30,3 +30,4 @@
 @media(max-width:780px){.contact-image{height:320px}.contact-content{padding:50px 0}}
 .time-section{background:var(--paper)}
 .location-section,.value-section,.quality-section{background:#eceee5;box-shadow:0 0 0 100vmax #eceee5;clip-path:inset(0 -100vmax)}
+.quality-section{grid-template-columns:1fr;gap:34px}.quality-section>div>p{max-width:560px}
