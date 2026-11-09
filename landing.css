@@ -40,3 +40,5 @@
 .whatsapp-button .wa-icon{width:28px;height:28px;margin-right:12px}.whatsapp-button .wa-icon path:first-child{fill:#fff}.whatsapp-button .wa-icon path:last-child{fill:#25D366}
 .whatsapp-button>span:last-child{margin-left:14px}
 .whatsapp-button{width:fit-content;min-width:300px;margin-left:auto;margin-right:auto}.whatsapp-button>span:last-child{margin-left:14px}
+.whatsapp-button{font-size:18px;min-width:380px;padding:21px 30px}.whatsapp-button .wa-icon{width:40px;height:40px;margin-right:16px}
+@media(max-width:550px){.whatsapp-button{min-width:0;width:100%;max-width:100%;font-size:17px;padding:19px 16px}.whatsapp-button .wa-icon{width:34px;height:34px;margin-right:12px}}
