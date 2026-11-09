@@ -34,3 +34,4 @@
 .portrait-photo img{object-position:68% center}
 .whatsapp-button .wa-icon{display:block;flex:none}.whatsapp-button>span:first-child{display:none}
 .whatsapp-button .wa-icon{margin-right:12px}
+.quality-section{text-align:center}.quality-section>div>p{margin-left:auto;margin-right:auto}.quality-details{width:min(820px,100%);margin:0 auto;text-align:left}.quality-details>.text-link{margin-left:auto;margin-right:auto;display:flex;width:fit-content}
