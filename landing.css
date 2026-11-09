@@ -39,3 +39,4 @@
 .whatsapp-button:hover{filter:none;background:#1fbd5b;transform:translateY(-1px);box-shadow:0 12px 26px #25d36657}
 .whatsapp-button .wa-icon{width:28px;height:28px;margin-right:12px}.whatsapp-button .wa-icon path:first-child{fill:#fff}.whatsapp-button .wa-icon path:last-child{fill:#25D366}
 .whatsapp-button>span:last-child{margin-left:14px}
+.whatsapp-button{width:fit-content;min-width:300px;margin-left:auto;margin-right:auto}.whatsapp-button>span:last-child{margin-left:14px}
